@@ -1,5 +1,5 @@
 # Environments
-.env        <-- ADD THIS LINE
+.env        
 .env.local
 .env.sample
 
