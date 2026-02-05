@@ -12,7 +12,7 @@ function App() {
 
   // Global fetch function
   const fetchTasks = async () => {
-    const res = await fetch("http://localhost:5000/Task/");
+    const res = await fetch("https://task-manager-3g2l.onrender.com/Task");
     const data = await res.json();
     setTasks(data);
   };
@@ -20,8 +20,8 @@ function App() {
   // Global save/update function
   const handleSaveTask = async (formData, id = null) => {
     const url = id
-      ? `http://localhost:5000/Task/${id}`
-      : "http://localhost:5000/Task/";
+      ? `https://task-manager-3g2l.onrender.com/${id}`
+      : "https://task-manager-3g2l.onrender.com/Task/";
     const method = id ? "PUT" : "POST";
 
     const res = await fetch(url, {
