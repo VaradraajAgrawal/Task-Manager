@@ -9,8 +9,7 @@ function App() {
   const [tasks, setTasks] = useState([]); // Shared Data
   const [editingTask, setEditingTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const API_BASE = import.meta.env.VITEURL;
-
+  const API_BASE = import.meta.env.VITE_API_URL;
   // Global fetch function
   const fetchTasks = async () => {
     const res = await fetch(`${API_BASE}/Task`);
