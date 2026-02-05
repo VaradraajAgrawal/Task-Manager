@@ -8,11 +8,12 @@ const Tasks = ({
   setIsModalOpen,
   tasks,
   setTasks,
+  server,
 }) => {
   const [filter, setFilter] = useState("all"); // all, pending, completed
 
   const handleDelete = async (id) => {
-    const res = await fetch(`https://task-manager-3g2l.onrender.com/${id}`, {
+    const res = await fetch(`${server}/${id}`, {
       method: "DELETE",
     });
     if (!res.ok) {
@@ -31,14 +32,11 @@ const Tasks = ({
   // Update handleUpdate to use the prop setTasks
   const handleUpdate = async (task) => {
     const newStatus = task.status === "completed" ? "pending" : "completed";
-    const res = await fetch(
-      `https://task-manager-3g2l.onrender.com/${task._id}`,
-      {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      },
-    );
+    const res = await fetch(`${server}/${task._id}`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ status: newStatus }),
+    });
     const data = await res.json();
     // This now updates the GLOBAL state in App.jsx
     setTasks((prev) =>

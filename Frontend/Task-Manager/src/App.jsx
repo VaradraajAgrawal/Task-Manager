@@ -9,19 +9,18 @@ function App() {
   const [tasks, setTasks] = useState([]); // Shared Data
   const [editingTask, setEditingTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   // Global fetch function
   const fetchTasks = async () => {
-    const res = await fetch("https://task-manager-3g2l.onrender.com/Task");
+    const res = await fetch(`${API_BASE}/Task`);
     const data = await res.json();
     setTasks(data);
   };
 
   // Global save/update function
   const handleSaveTask = async (formData, id = null) => {
-    const url = id
-      ? `https://task-manager-3g2l.onrender.com/${id}`
-      : "https://task-manager-3g2l.onrender.com/Task/";
+    const url = id ? `${API_BASE}/${id}` : `${API_BASE}/Task/`;
     const method = id ? "PUT" : "POST";
 
     const res = await fetch(url, {
@@ -79,6 +78,7 @@ function App() {
                   setTasks={setTasks}
                   setIsModalOpen={setIsModalOpen}
                   setEditingTask={setEditingTask}
+                  server={API_BASE}
                 />
               }
             />
