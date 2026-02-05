@@ -13,7 +13,7 @@ const Tasks = ({
   const [filter, setFilter] = useState("all"); // all, pending, completed
 
   const handleDelete = async (id) => {
-    const res = await fetch(`${server}/${id}`, {
+    const res = await fetch(`${server}/Task/${id}`, {
       method: "DELETE",
     });
     if (!res.ok) {
@@ -32,7 +32,7 @@ const Tasks = ({
   // Update handleUpdate to use the prop setTasks
   const handleUpdate = async (task) => {
     const newStatus = task.status === "completed" ? "pending" : "completed";
-    const res = await fetch(`${server}/${task._id}`, {
+    const res = await fetch(`${server}/Task/${task._id}`, {
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ status: newStatus }),
